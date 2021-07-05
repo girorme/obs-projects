@@ -14,7 +14,7 @@ This project show how some observability can be applied to web app / services
 - Elixir
 
 ### Todo
-- [] Emit logs with filebeat
-- [] Add metrics system
-- [] Add tracing
-- [] Add kubernetes example
+- [ ] Emit logs with filebeat
+- [ ] Add metrics system
+- [ ] Add tracing
+- [ ] Add kubernetes example
