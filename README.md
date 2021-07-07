@@ -8,7 +8,6 @@ This project show how some observability can be applied to web app / services
 ### Stack
 - Golang
 - Nodejs
-- PHP
 - Elixir
 - ELK
 

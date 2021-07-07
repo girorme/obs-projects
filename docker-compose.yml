@@ -1,0 +1,66 @@
+version: "3.7"
+
+services:
+  crawler:
+    build:
+      context: .
+      dockerfile: ./crawler/app.dockerfile
+    #depends_on:
+    #  - obsproj_db
+    environment:
+      DATABASE_URL: postgres://obsproj:123456@obsproj_db/obsproj?sslmode=disable
+    restart: on-failure
+    volumes: 
+      - ./logs:/app/logs
+
+  # account:
+  #   build:
+  #     context: .
+  #     dockerfile: ./account/app.dockerfile
+  #   #depends_on:
+  #   #  - obsproj_db
+  #   environment:
+  #     DATABASE_URL: postgres://obsproj:123456@obsproj_db/obsproj?sslmode=disable
+  #   restart: on-failure
+  
+  # obsproj_db:
+  #   build:
+  #     context: ./account
+  #     dockerfile: ./db.dockerfile
+  #   environment:
+  #     POSTGRES_DB: obsproj
+  #     POSTGRES_USER: obsproj
+  #     POSTGRES_PASSWORD: 123456
+  #   restart: unless-stopped
+
+  elasticsearch:
+    image: "docker.elastic.co/elasticsearch/elasticsearch:7.13.2"
+    environment:
+      - "ES_JAVA_OPTS=-Xms1g -Xmx1g"
+      - "discovery.type=single-node"
+    ports:
+      - "9200:9200"
+    volumes:
+      - elasticsearch_data:/usr/share/elasticsearch/data
+      - ./config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
+    healthcheck:
+      test: ["CMD", "curl", "-s", "-f", "http://localhost:9200/_cat/health"]
+      interval: 3s
+      timeout: 3s
+      retries: 10
+
+  kibana:
+    image: "docker.elastic.co/kibana/kibana:7.13.2"
+    ports:
+      - "5601:5601"
+
+  filebeat:
+    image: "docker.elastic.co/beats/filebeat:7.13.2"
+    volumes:
+      - ./config/filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
+      - ./logs:/logs/
+  
+volumes:
+  elasticsearch_data:
+  config:
+  logs:
