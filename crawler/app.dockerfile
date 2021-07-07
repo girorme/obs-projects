@@ -9,8 +9,6 @@ COPY crawler/vendor vendor
 RUN go mod download
 
 COPY . /app
-RUN pwd
-RUN ls -all
 
 RUN apk --no-cache update  \
     && apk add --no-cache git tzdata \

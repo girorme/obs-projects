@@ -5,23 +5,17 @@ services:
     build:
       context: .
       dockerfile: ./crawler/app.dockerfile
-    #depends_on:
-    #  - obsproj_db
-    environment:
-      DATABASE_URL: postgres://obsproj:123456@obsproj_db/obsproj?sslmode=disable
     restart: on-failure
     volumes: 
       - ./logs:/app/logs
 
-  # account:
-  #   build:
-  #     context: .
-  #     dockerfile: ./account/app.dockerfile
-  #   #depends_on:
-  #   #  - obsproj_db
-  #   environment:
-  #     DATABASE_URL: postgres://obsproj:123456@obsproj_db/obsproj?sslmode=disable
-  #   restart: on-failure
+  account:
+    build:
+      context: .
+      dockerfile: ./account/app.dockerfile
+    restart: on-failure
+    volumes: 
+      - ./logs:/logs
   
   # obsproj_db:
   #   build:
