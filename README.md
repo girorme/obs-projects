@@ -16,6 +16,7 @@ This project show how some observability can be applied to web app / services
 $ docker-compose up
 ```
 
+### Logs
 After containers starts you can visit `localhost:5601` to access `kibana`, so in Menu > Observability > Logs you're able to see log writing:
 
 ![kibana](assets/kibana.png)
