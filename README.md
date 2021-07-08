@@ -26,4 +26,5 @@ After containers starts you can visit `localhost:5601` to access `kibana`, so in
 - [X] Emit logs with filebeat
 - [ ] Add metrics system
 - [ ] Add tracing
+- [ ] ELK Apm system via agents
 - [ ] Add kubernetes example
