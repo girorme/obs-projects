@@ -6,10 +6,11 @@ This simple project show how some observability can be applied to web app / serv
 > In this case, this repository has (in progress...) applications surrounded by logs, metrics, and traces that are often known as the three pillars of observability
 
 ### Stack
-- Golang
-- Nodejs
-- Elixir
-- ELK
+- Applications in
+  - Golang
+  - Nodejs
+  - Elixir
+- ELK to logs / apm
 
 ### Start project
 ```
