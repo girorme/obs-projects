@@ -3,10 +3,11 @@ FROM golang:1.16.5-alpine3.14 AS builder
 RUN mkdir /app  
 WORKDIR /app
 
+RUN go mod download
+RUN go mod vendor
+
 COPY order/go.mod order/go.sum ./
 COPY order/vendor vendor
-
-RUN go mod download
 
 COPY . /app
 
